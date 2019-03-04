@@ -1,18 +1,7 @@
 from flask import Flask, render_template, url_for
 app = Flask(__name__)
 
-posts = [
-	{	
-		'name': 'Gopesh',
-		'Current_Loan_Amount': '400000',
-		'Credit_Score': '709'		
-	},
-	{
-		'name': 'Anisha',					
-		'Current_Loan_Amount': '120500',
-		'Credit_Score': '710'	
-	}
-]
+
 
 @app.route("/")
 @app.route("/home")
