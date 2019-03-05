@@ -2,6 +2,40 @@
 {%block content %}
 <p class="well"></p>
 <div class="well">
-		<h1>View</h1>
+	<form action="/view" method="POST">
+		Customer ID: <input type="text" name="cid" placeholder="Customer ID "><br>
+		<input type="submit" value="Submit">
+	</form>
+</div>
+<div class="container">
+	<table class="table">
+		{%for key, val in data.items()%}
+			<tr>
+			<td>{{ key }}</td>
+			<td>{{ val }}</td>
+			</tr>
+		{% endfor %}
+		<tr>
+		  <td>Centro comercial Moctezuma</td>
+		  <td>Francisco Chang</td>
+		</tr>
+		<tr>
+		  <td>Ernst Handel</td>
+		  <td>Roland Mendel</td>
+		</tr>
+		<tr>
+		  <td>Island Trading</td>
+		  <td>Helen Bennett</td>
+		</tr>
+		<tr>
+		  <td>Laughing Bacchus Winecellars</td>
+		  <td>Yoshi Tannamuri</td>
+		</tr>
+		<tr>
+		  <td>Magazzini Alimentari Riuniti</td>
+		  <td>Giovanni Rovelli</td>
+		</tr>
+	  </table>
+	  
 </div>
 {%endblock content %}
