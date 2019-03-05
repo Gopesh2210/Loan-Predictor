@@ -11,10 +11,10 @@ app.config['SECRET_KEY'] = 'ee556c4ef73062527783828c5651fff6'
 def home():
     return render_template('MainLayout.html', title='Home')
 
-@app.route("/login")
+@app.route("/login", methods=['GET','POST'])
 def login():
-		form = RegistrationForm()
-		return render_template('Login.html', title='Login/Register', form=form)
+		#form = RegistrationForm()
+		return render_template('Login.html', title='Login/Register')
 
 @app.route("/view")
 def view():

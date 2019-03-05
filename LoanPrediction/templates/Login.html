@@ -4,147 +4,35 @@
 	<title>Loan-Predicitor Login</title>
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login.css') }}">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	
+	<!--Validate the password and confirm password Javascript-->
+	<script> 
+		function checkPassword(form) { 
+				password1 = form.password.value; 
+				password2 = form.confirm_password.value; 
+							
+				// If Not same return False.     
+				if (password1 != password2) { 
+						alert ("\nPassword did not match: Please try again...") 
+						return false; 
+				} 
 
-  <style>
-		body {
-		  font: 400 15px Lato, sans-serif;
-		  line-height: 1.8;
-		  color: #818181;
-		}
-		* {box-sizing: border-box}
+				// If same return True. 
+				else{ 
+						alert("Sucessfully signed up!: Welcome to Loan-Predictor!") 
+						return true; 
+				} 
+		} 
+</script>
 
-		.navbar {
-    margin-bottom: 0;
-    background-color: #050607;
-    z-index: 9999;
-    border: 0;
-    font-size: 12px !important;
-    line-height: 1.42857143 !important;
-    letter-spacing: 4px;
-    border-radius: 0;
-    font-family: Montserrat, sans-serif;
-  				}
-  .navbar li a, .navbar .navbar-brand {
-    color: #fff !important;
- 							 }
-  .navbar-nav li a:hover, .navbar-nav li.active a {
-    color: #f4511e !important;
-    background-color: #fff !important;
-							}
-  .navbar-default .navbar-toggle {
-    border-color: transparent;
-    color: #fff !important;
-  							}
-
-	/* Style the input container */
-	.navbar .login-container {
-  	float: right;
-	}
-
-/* Style the input field inside the navbar */
-	.navbar input[type=text] input[type=password]{
-  	padding: 6px;
-  	margin-top: 8px;
-  	font-size: 17px;
-  	border: none;
-  	width: 150px; /* adjust as needed (as long as it doesn't break the topnav) */
-	}
-
-/* Style the button inside the input container for login */
-	.navbar .login-container #btn {
-  	float: right;
-  	padding: 6px;
-  	margin-top: 8px;
-  	margin-right: 16px;
-  	background: rgb(116, 114, 114);
-  	font-size: 17px;
-  	border: none;
-  	cursor: pointer;
-	width: 15%;
-	}
-
-	.navbar .login-container #btn:hover {
- 	 background:#f4511e;
-	}	
-
-
-
-/* Sign Up Form*/
-
-/* Full-width input fields */
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-}
-
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 0;
-}
-
-/* Set a style for all buttons */
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-
-button:hover {
-  opacity:1;
-}
-
-/* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-}
-
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  width: 50%;
-}
-
-/* Add padding to container elements */
-.container {
-  padding: 16px;
-}
-
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
-     width: 100%;
-  }
-}
-
-	</style>
 
 </head>
 
@@ -160,13 +48,14 @@ button:hover {
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>                        
 					  </button>
-					  <a class="navbar-brand fas fa-chart-bar" href="#myPage">LP</a>
+					  <img src="{{url_for('static', filename='logo.png')}}"  height="150" width="150"/>
+							<span>Loan-Predictor</span>
 					</div>
 					<div class="collapse navbar-collapse" id="myNavbar">
 					  <ul class="nav navbar-nav navbar-right">
 							<div class="login-container">
 									<form action="/home">
-									  <input type="text" placeholder="Username" name="username" required>
+									  <input type="email" placeholder="Email" name="email" required>
 									  <input   type="password" placeholder="Password" name="pswd" minlength="8" required>
 									  <button id="btn" type="submit">Login</button>
 									</form>
@@ -178,7 +67,7 @@ button:hover {
 				</nav>
 
 
-				<form method="POST"  action="/login" style="border:1px solid #ccc">
+				<form method="POST" onSubmit = "return checkPassword(this)"  style="border:1px solid #ccc">
 				<div class="container">
 					<br>
 					<br>
@@ -192,27 +81,25 @@ button:hover {
 
 					<h2>Sign Up</h2>
 					<label for="email"><b>Email</b></label>
-					<input type="text" placeholder="Enter Email" name="email" required>
+					<input type="email" placeholder="Enter Email" name="email" required>
 
 					<label for="psw"><b>Password</b></label>
-					<input type="password" placeholder="Enter Password" name="psw" minlength="8" required>
+					<input type="password" id="password" placeholder="Enter Password" name="psw" minlength="8"  required>
 
 					<label for="psw-repeat"><b>Repeat Password</b></label>
-					<input type="password" placeholder="Repeat Password" name="psw-repeat" minlength="8" required>
+					<input type="password" id="confirm_password" placeholder="Repeat Password" name="psw_repeat" minlength="8"  required>
 					
 					
 					<p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
 					<div class="clearfix">
 					<button type="button" class="cancelbtn">Cancel</button>
-					<button type="submit" class="signupbtn">Sign Up</button>
+					<button type="submit" class="signupbtn" >Sign Up</button>
 					</div>
 				</div>
 				</form>
 
-
-
 			
-	
+
 </body>
 </html>
