@@ -3,18 +3,21 @@
 <p class="well"></p>
 <div class="well">
 	<form action="/view" method="POST">
-		Customer ID: <input type="text" name="cid" placeholder="Customer ID "><br>
+		<input type="text" name="cid" placeholder="Customer ID "><br>
 		<input type="submit" value="Submit">
 	</form>
 </div>
 <div class="container">
 	<table class="table">
-		{%for key, val in data.items()%}
-			<tr>
-				<td>{{ key }}</td>
-				<td>{{ val }}</td>
-			</tr>
-		{% endfor %}
+
+		{%if data %}
+			{%for key, val in data.items()%}
+				<tr>
+					<td>{{ key }}</td>
+					<td>{{ val }}</td>
+				</tr>
+			{% endfor %}
+		{%endif%}
 	</table>
 	  
 </div>

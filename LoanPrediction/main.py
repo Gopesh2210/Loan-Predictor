@@ -21,7 +21,7 @@ def login():
 def view():
 	if request.method == 'GET':
 		return render_template('view.html', title='View')
-	else:
+	elif request.method == 'POST':
 		info = var.search_cid(request.form['cid'])
 		return render_template('view.html', data=info)
 
