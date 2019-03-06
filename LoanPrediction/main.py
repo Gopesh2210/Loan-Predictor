@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for,request
 from forms import RegistrationForm, LoginForm
 import view as var
+import pygal
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'ee556c4ef73062527783828c5651fff6'
@@ -28,7 +29,14 @@ def view():
 
 @app.route("/analyze")
 def analyze():
-	return render_template('analyze.html', title='Analyze')
+	chart  = pygal.Pie()
+	chart.add('IE', [5.7, 10.2, 2.6, 1])
+	chart.add('Firefox', [.6, 16.8, 7.4, 2.2, 1.2, 1, 1, 1.1, 4.3, 1])
+	chart.add('Chrome', [.3, .9, 17.1, 15.3, .6, .5, 1.6])
+	chart.add('Safari', [4.4, .1])
+	chart.add('Opera', [.1, 1.6, .1, .5])
+	chart = chart.render_data_uri()
+	return render_template('analyze.html', chart=chart)
 
 @app.route("/generate")
 def generate():
