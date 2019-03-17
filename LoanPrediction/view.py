@@ -1,5 +1,5 @@
 import pandas as pd
-df = pd.read_csv('credit_train_edited_version.csv')
+df = pd.read_csv('../credit_train_edited_version.csv')
 id = df.loc[0].values[1]
 def search_cid(id):
     for i in range(len(df)):

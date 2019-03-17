@@ -1,10 +1,42 @@
 {%extends "layout.html" %}
+{%block link%}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+{%endblock link%}
 {%block content %}
 <p class="well"></p>
 <div class="well">
 		<h1>Analyze</h1>
 </div>
 <div>
-	<embed type="image/svg+xml" src= {{ chart|safe }} />
+	<canvas id="myChart"></canvas>
  </div>
 {%endblock content %}
+
+{%block script%}
+<script>
+var ds = {{dat}};
+var ctx = document.getElementById('myChart').getContext('2d');
+
+data = {
+        labels: ['Red','Yellow','Blue'],
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: ['rgb(255, 99, 132)','rgb(255, 239, 132)','rgb(200, 99, 132)'],
+            borderColor: 'rgb(255, 99, 132)',
+            data: {{dat}}
+            
+        }]
+    }
+
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'pie',
+
+    // The data for our dataset
+    data: data,
+
+    // Configuration options go here
+    options: {}
+});
+</script>
+{%endblock script%}
