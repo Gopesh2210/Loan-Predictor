@@ -3,6 +3,7 @@ from forms import RegistrationForm, LoginForm
 import view as var
 import pygal
 import _pickle as pickle
+import json
 pred_model = pickle.load(open('trainedModel.sav','rb'))
 
 app = Flask(__name__)
@@ -33,8 +34,9 @@ def view():
 @app.route("/analyze")
 def analyze():
 	data = pred_model.feature_importances_
-	data = [x*100 for x in data]
-	return render_template('analyze.html',dat = data)
+	data = [round(x*100,2) for x in data]
+	labels = var.labels()
+	return render_template('analyze.html',data = data,labels = json.dumps(labels))
 
 @app.route("/generate")
 def generate():

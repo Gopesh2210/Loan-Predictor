@@ -7,23 +7,36 @@
 <div class="well">
 		<h1>Analyze</h1>
 </div>
-<div>
+<div class="container">
 	<canvas id="myChart"></canvas>
  </div>
 {%endblock content %}
 
 {%block script%}
 <script>
-var ds = {{dat}};
+var data = {{data}};
+var labels = {{labels|safe}};
 var ctx = document.getElementById('myChart').getContext('2d');
-
+var options = {
+    cutoutPercentage : 60,
+    responsive : true,
+    legend : {
+        position: 'right'
+    },
+    animation : {
+        animateScale : true,
+        easing: 'easeOutBounce',
+        duration: 2000
+    }
+};
+var color = ['#4D4D4D','#5DA5DA','#FAA43A','#60BD68','#F17CB0','#B2912F','#B276B2','#DECF3F']
 data = {
-        labels: ['Red','Yellow','Blue'],
+        labels: labels,
         datasets: [{
             label: 'My First dataset',
-            backgroundColor: ['rgb(255, 99, 132)','rgb(255, 239, 132)','rgb(200, 99, 132)'],
-            borderColor: 'rgb(255, 99, 132)',
-            data: {{dat}}
+            backgroundColor: color,
+            borderColor: 'rgb(255, 255, 255)',
+            data: data
             
         }]
     }
@@ -36,7 +49,7 @@ var chart = new Chart(ctx, {
     data: data,
 
     // Configuration options go here
-    options: {}
+    options: options
 });
 </script>
 {%endblock script%}

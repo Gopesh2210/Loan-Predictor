@@ -1,16 +1,14 @@
 import numpy as np
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 import pickle
 
-df = pd.read_csv('credit_train_edited_version.csv')
+df = pd.read_csv('./credit_train_edited_version.csv')
 
-df_b=df.drop(['Loan ID','Customer ID','Loan Status','Term','Home Ownership','Purpose','Years in current job'],axis=1)
+df_b=df.drop(['Tax Liens','Bankruptcies','Number of Credit Problems','Loan ID','Customer ID','Loan Status','Term','Home Ownership','Purpose','Years in current job'],axis=1)
 
 X = df_b.drop(['Fully Paid'],axis=1)
 Y = df_b['Fully Paid']
