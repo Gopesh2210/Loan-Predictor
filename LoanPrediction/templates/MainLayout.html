@@ -1,4 +1,16 @@
 {%extends "layout.html" %}
+
+{%block nav_config%}
+    <nav class="navbar navbar-default navbar-fixed-top">
+{%endblock%}
+{%block nav%}
+  <li><a class="fa fa-users"  href="#about">ABOUT</a></li>
+  <li><a class="fas fa-tasks" href="#services">SERVICES</a></li>
+  <li><a class="fas fa-phone-square" href="#contact">CONTACT</a></li>
+  <li><a class="fas fa-comment-alt" href="#feedback">FEEDBACK</a></li>
+  <li><a href="/login"><span class="glyphicon glyphicon-log-out "></span>LOGOUT</a>
+
+{%endblock nav%}
 {%block content%}
 <div class="jumbotron text-center">
   <h1>LOAN-PREDICTOR</h1> 

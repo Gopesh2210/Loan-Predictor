@@ -20,7 +20,8 @@ def home():
 @app.route("/login", methods=['GET','POST'])
 def login():
 		#form = RegistrationForm()
-		return render_template('Login.html', title='Login/Register')
+		if request.method == 'GET':
+			return render_template('login1.html', title='Login/Register')
 
 @app.route("/view", methods=['GET','POST'])
 def view():

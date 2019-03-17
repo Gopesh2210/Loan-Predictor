@@ -1,4 +1,14 @@
 {%extends "layout.html" %}
+{%block link%}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+{%endblock link%}
+{%block nav_config%}
+    <nav class="navbar navbar-default">
+{%endblock%}
+{%block nav%}
+  <li><a href="/login"><span class="glyphicon glyphicon-log-out "></span>LOGOUT</a>
+
+{%endblock nav%}
 {%block content %}
 <p class="well"></p>
 <div class="well">
