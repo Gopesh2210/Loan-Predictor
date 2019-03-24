@@ -5,3 +5,5 @@
 LoanPrediction/trainedModel\.sav
 
 *.ipynb
+
+LoanPrediction/__pycache__/
