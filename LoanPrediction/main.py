@@ -1,7 +1,6 @@
 from flask import Flask, render_template, url_for,request
-from forms import RegistrationForm, LoginForm
+#from forms import RegistrationForm, LoginForm
 import view as var
-import pygal
 import _pickle as pickle
 import json
 pred_model = pickle.load(open('trainedModel.sav','rb'))
