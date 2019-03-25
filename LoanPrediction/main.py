@@ -1,5 +1,8 @@
-from flask import Flask, render_template, url_for,request
-#from forms import RegistrationForm, LoginForm
+from flask import Flask, render_template, url_for,request, flash,redirect,session,logging,request
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Column, Integer, String
+from flask_bcrypt import Bcrypt
+from forms import RegistrationForm, LoginForm
 import view as var
 import _pickle as pickle
 import json
@@ -8,6 +11,23 @@ pred_model = pickle.load(open('trainedModel.sav','rb'))
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'ee556c4ef73062527783828c5651fff6'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+
+
+
+
+class User(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	username = db.Column(db.String(20), nullable=False)
+	bank_name = db.Column(db.String(20), nullable=False)
+	email_addr = db.Column(db.String(50), unique=True, nullable=False)
+	password = db.Column(db.String(20), nullable=False)
+
+
+	def __repr__(self):
+		return f"User('{self.username}', '{self.bank_name}', '{self.email_addr}')"
 
 
 
@@ -18,9 +38,21 @@ def home():
 
 @app.route("/login", methods=['GET','POST'])
 def login():
-		#form = RegistrationForm()
+
+		if request.method == "POST":
+				username = request.form['username']
+				bank_name = request.form['bank_name']
+				email = request.form['email_addr']
+				password= request.form['password']
+				register = User(username = username, bank_name=bank_name, email_addr = email, password = password)
+				db.session.add(register)
+				db.session.commit()
+				return redirect(url_for("login"))
+				flash('You were successfully signed up')
+
 		if request.method == 'GET':
 			return render_template('login1.html', title='Login/Register')
+
 
 @app.route("/view", methods=['GET','POST'])
 def view():
@@ -44,4 +76,5 @@ def generate():
 
 
 if __name__ == '__main__':
+	db.create_all()
 	app.run(debug=True)    
