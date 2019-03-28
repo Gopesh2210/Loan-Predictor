@@ -2,6 +2,7 @@ from LoanPrediction.model import User
 from flask import render_template, url_for,request, flash,redirect,session,logging,request
 from LoanPrediction.forms import RegistrationForm, LoginForm
 from sqlalchemy import Column, Integer, String
+from flask_login import login_user, current_user, logout_user, login_required
 
 from LoanPrediction import app, db, bcrypt
 import LoanPrediction.view as var
@@ -41,6 +42,12 @@ def login():
 				flash('Login Unsuccessful. Please check username and password', 'danger')
 
 		return render_template('login.html', title='Login', form=form)
+
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
 
 '''@app.route("/login", methods=['GET','POST'])
