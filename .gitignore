@@ -2,7 +2,7 @@
 
 *.csv
 
-LoanPrediction/trainedModel\.sav
+*.sav
 
 *.ipynb
 

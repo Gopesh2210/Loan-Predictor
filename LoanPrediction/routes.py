@@ -1,33 +1,13 @@
-from flask import Flask, render_template, url_for,request, flash,redirect,session,logging,request
-from flask_sqlalchemy import SQLAlchemy
+from LoanPrediction.model import User
+from flask import render_template, url_for,request, flash,redirect,session,logging,request
+from LoanPrediction.forms import RegistrationForm, LoginForm
 from sqlalchemy import Column, Integer, String
-from flask_bcrypt import Bcrypt
-from forms import RegistrationForm, LoginForm
-import view as var
+
+from LoanPrediction import app, db, bcrypt
+import LoanPrediction.view as var
 import _pickle as pickle
 import json
 pred_model = pickle.load(open('trainedModel.sav','rb'))
-
-app = Flask(__name__)
-
-app.config['SECRET_KEY'] = 'ee556c4ef73062527783828c5651fff6'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-
-
-
-
-class User(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	username = db.Column(db.String(20), nullable=False)
-	bank_name = db.Column(db.String(20), nullable=False)
-	email_addr = db.Column(db.String(50), unique=True, nullable=False)
-	password = db.Column(db.String(20), nullable=False)
-
-
-	def __repr__(self):
-		return f"User('{self.username}', '{self.bank_name}', '{self.email_addr}')"
 
 
 
@@ -36,7 +16,34 @@ class User(db.Model):
 def home():
     return render_template('MainLayout.html', title='Home')
 
+@app.route("/register", methods=['GET','POST'])
+def register():
+	form = RegistrationForm()
+	if form.validate_on_submit():
+		hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+		user = User(username=form.username.data, bank_name=form.bank_name.data , email_addr=form.email.data, password=hashed_password)
+		db.session.add(user)
+		db.session.commit()
+		flash(f'Account created for {form.username.data}!', 'success')
+		return redirect(url_for('login'))
+	return render_template('register.html', title='Register',form=form)
+     
+
+
 @app.route("/login", methods=['GET','POST'])
+def login():
+		form = LoginForm()
+		if form.validate_on_submit():
+			if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+				flash('You have been logged in!', 'success')
+				return redirect(url_for('home'))
+			else:
+				flash('Login Unsuccessful. Please check username and password', 'danger')
+
+		return render_template('login.html', title='Login', form=form)
+
+
+'''@app.route("/login", methods=['GET','POST'])
 def login():
 
 		if request.method == "POST":
@@ -52,6 +59,7 @@ def login():
 
 		if request.method == 'GET':
 			return render_template('login1.html', title='Login/Register')
+'''
 
 
 @app.route("/view", methods=['GET','POST'])
@@ -73,8 +81,3 @@ def analyze():
 @app.route("/generate")
 def generate():
 	return render_template('generate.html', title='Generate')
-
-
-if __name__ == '__main__':
-	db.create_all()
-	app.run(debug=True)    
