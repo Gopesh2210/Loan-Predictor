@@ -8,7 +8,7 @@ from LoanPrediction import app, db, bcrypt
 import LoanPrediction.view as var
 import _pickle as pickle
 import json
-pred_model = pickle.load(open('trainedModel.sav','rb'))
+pred_model = pickle.load(open('./trainedModel.sav','rb'))
 
 
 
@@ -85,6 +85,28 @@ def analyze():
 	labels = var.labels()
 	return render_template('analyze.html',data = data,labels = json.dumps(labels))
 
-@app.route("/generate")
+@app.route("/generate",methods=['GET', 'POST'])
 def generate():
-	return render_template('generate.html', title='Generate')
+	if request.method == 'GET':
+		return render_template('generate.html', title='Generate')
+	if request.method == 'POST':
+		form = request.form
+		attribut = []
+		attribut.append(float(form['amount']))
+		attribut.append(float(form['cscore']))
+		attribut.append(float(form['annualincome']))
+		attribut.append(float(form['monthlydebt']))
+		attribut.append(float(form['yearsofhistory']))
+		attribut.append(float(form['openacc']))
+		attribut.append(float(form['creditbalance']))
+		attribut.append(float(form['maxopencredit']))
+		val = pred_model.predict_proba([attribut])[0]
+		data = []
+		data.append(val[1])
+		data.append(val[0])
+		labels =[]
+		labels.append(str(data[0]))
+		labels.append("")
+		print(data)
+		# return render_template('score.html',data=data)
+		return render_template('score.html',data = data,labels = json.dumps(labels))
