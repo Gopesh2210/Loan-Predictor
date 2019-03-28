@@ -10,6 +10,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 {%endblock link%}
 {%block content %}
+<br>
 <div class="container">
 	<canvas id="myChart"></canvas>
  </div>
@@ -23,26 +24,23 @@ var ctx = document.getElementById('myChart').getContext('2d');
 var options = {
     cutoutPercentage : 60,
     responsive : true,
-    legend : {
-        position: 'right'
-    },
+    rotation : 3.14,
+    circumference :3.14,
     animation : {
         animateScale : true,
-        easing: 'easeOutBounce',
         duration: 2000
     }
 };
-var color = ['#4D4D4D','#5DA5DA','#FAA43A','#60BD68','#F17CB0','#B2912F','#B276B2','#DECF3F']
 data = {
         labels: labels,
         datasets: [{
             label: 'My First dataset',
-            backgroundColor: color,
+            backgroundColor: ['#DECF3F','#FFFFFF'],
             borderColor: 'rgb(255, 255, 255)',
             data: data
             
         }]
-    }
+    };
 
 var chart = new Chart(ctx, {
     // The type of chart we want to create
