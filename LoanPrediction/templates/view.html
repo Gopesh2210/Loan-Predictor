@@ -1,22 +1,27 @@
 {%extends "layout.html" %}
 {%block link%}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='view.css') }}">
 {%endblock link%}
 {%block nav_config%}
     <nav class="navbar navbar-default">
 {%endblock%}
 {%block nav%}
-<form class="navbar-form navbar-left"  action="/view" method="POST">
-	<div class="form-group">
-		<input type="text" class="form-control" name="cid" placeholder="Customer ID" aria-describedby="basic-addon2">
-	</div>
-	<button type="submit" class="btn btn-default">Search</button>
-</form>
   <li><a href="/login"><span class="glyphicon glyphicon-log-out "></span>LOGOUT</a>
 {%endblock nav%}
 {%block content %}
+	<div class="container">
+		<form action="/view" method="POST">
+			<div class="form-group">
+				<input type="text" class="form-control" name="cid" placeholder="Customer ID" aria-describedby="basic-addon2">
+			</div>
+
+			<button type="submit" class="btn btn-primary">Search</button>
+		</form>
+	</div>
+
 <div class="container">
-	<table class="table">
+	<table class="table table-hover">
 
 		{%if data %}
 			{%for key, val in data.items()%}
