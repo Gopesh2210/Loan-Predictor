@@ -7,3 +7,5 @@
 *.ipynb
 
 LoanPrediction/__pycache__/
+
+*.db
