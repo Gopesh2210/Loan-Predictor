@@ -87,6 +87,7 @@ def view():
 			
 
 
+
 @app.route("/analyze")
 def analyze():
 	data = pred_model.feature_importances_
