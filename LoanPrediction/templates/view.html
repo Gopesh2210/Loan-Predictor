@@ -6,17 +6,15 @@
     <nav class="navbar navbar-default">
 {%endblock%}
 {%block nav%}
+<form class="navbar-form navbar-left"  action="/view" method="POST">
+	<div class="form-group">
+		<input type="text" class="form-control" name="cid" placeholder="Customer ID" aria-describedby="basic-addon2">
+	</div>
+	<button type="submit" class="btn btn-default">Search</button>
+</form>
   <li><a href="/login"><span class="glyphicon glyphicon-log-out "></span>LOGOUT</a>
-
 {%endblock nav%}
 {%block content %}
-<p class="well"></p>
-<div class="well">
-	<form action="/view" method="POST">
-		<input type="text" name="cid" placeholder="Customer ID "><br>
-		<input type="submit" value="Submit">
-	</form>
-</div>
 <div class="container">
 	<table class="table">
 
