@@ -3,8 +3,10 @@ from flask import render_template, url_for,request, flash,redirect,session,loggi
 from LoanPrediction.forms import RegistrationForm, LoginForm
 from sqlalchemy import Column, Integer, String
 from flask_login import login_user, current_user, logout_user, login_required
+from flask_mail import Mail, Message
+import smtplib
 
-from LoanPrediction import app, db, bcrypt
+from LoanPrediction import app, db, bcrypt, mail
 import LoanPrediction.view as var
 import _pickle as pickle
 import json
@@ -13,9 +15,18 @@ pred_model = pickle.load(open('./trainedModel.sav','rb'))
 
 
 @app.route("/")
-@app.route("/home")
+@app.route("/home",methods=['GET','POST'])
+@login_required
 def home():
-    return render_template('MainLayout.html', title='Home')
+	'''if request.method == 'POST':
+		comment = request.form['comments']
+		sender_id = request.form['sender']
+		msg = Message('Hello', sender='abc@gmail.com', recipients=['beproject2k19@gmail.com'])
+		mail.send(msg)
+		flash('Message Sent!')'''
+	
+
+	return render_template('MainLayout.html', title='Home')
 
 @app.route("/register", methods=['GET','POST'])
 def register():
@@ -35,11 +46,12 @@ def register():
 def login():
 		form = LoginForm()
 		if form.validate_on_submit():
-			if form.email.data == 'admin@blog.com' and form.password.data == 'password':
-				flash('You have been logged in!', 'success')
-				return redirect(url_for('home'))
+			user = User.query.filter_by(email_addr=form.email.data).first()
+			if user and bcrypt.check_password_hash(user.password, form.password.data):
+				login_user(user, remember=form.remember.data)
+				return redirect(url_for('home'))	
 			else:
-				flash('Login Unsuccessful. Please check username and password', 'danger')
+				flash('Login Unsuccessful. Please check email and password', 'danger')
 
 		return render_template('login.html', title='Login', form=form)
 
@@ -47,29 +59,12 @@ def login():
 @app.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('login'))
 
-
-'''@app.route("/login", methods=['GET','POST'])
-def login():
-
-		if request.method == "POST":
-				username = request.form['username']
-				bank_name = request.form['bank_name']
-				email = request.form['email_addr']
-				password= request.form['password']
-				register = User(username = username, bank_name=bank_name, email_addr = email, password = password)
-				db.session.add(register)
-				db.session.commit()
-				return redirect(url_for("login"))
-				flash('You were successfully signed up')
-
-		if request.method == 'GET':
-			return render_template('login1.html', title='Login/Register')
-'''
 
 
 @app.route("/view", methods=['GET','POST'])
+@login_required
 def view():
 	if request.method == 'GET':
 		return render_template('view.html', title='View')
@@ -79,6 +74,7 @@ def view():
 
 
 @app.route("/analyze")
+@login_required
 def analyze():
 	data = pred_model.feature_importances_
 	data = [round(x*100,2) for x in data]
@@ -86,6 +82,7 @@ def analyze():
 	return render_template('analyze.html',data = data,labels = json.dumps(labels))
 
 @app.route("/generate",methods=['GET', 'POST'])
+@login_required
 def generate():
 	if request.method == 'GET':
 		return render_template('generate.html', title='Generate')

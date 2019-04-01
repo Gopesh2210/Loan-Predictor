@@ -8,7 +8,7 @@
   <li><a class="fas fa-tasks" href="#services">SERVICES</a></li>
   <li><a class="fas fa-phone-square" href="#contact">CONTACT</a></li>
   <li><a class="fas fa-comment-alt" href="#feedback">FEEDBACK</a></li>
-  <li><a href="/login"><span class="glyphicon glyphicon-log-out "></span>LOGOUT</a>
+  <li><a href="/logout"><span class="glyphicon glyphicon-log-out "></span>LOGOUT</a>
 
 {%endblock nav%}
 
@@ -138,13 +138,14 @@
       <p><span class="glyphicon glyphicon-phone"></span> +22 2641 5793</p>
       <p><span class="glyphicon glyphicon-envelope"></span> beproject2k19@gmail.com</p>
     </div>
+    <form method="GET">
     <div class="col-sm-7 slideanim">
       <div class="row">
         <div class="col-sm-6 form-group">
           <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
         </div>
         <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+          <input class="form-control" id="sender" name="sender" placeholder="Email" type="email" required>
         </div>
       </div>
       <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
@@ -154,6 +155,7 @@
         </div>
       </div>
     </div>
+  </form>
   </div>
 </div>
 
