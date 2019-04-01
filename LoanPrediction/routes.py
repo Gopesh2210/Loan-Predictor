@@ -69,13 +69,22 @@ def login():
 '''
 
 
+
 @app.route("/view", methods=['GET','POST'])
 def view():
 	if request.method == 'GET':
 		return render_template('view.html', title='View')
 	elif request.method == 'POST':
 		info = var.search_cid(request.form['cid'])
-		return render_template('view.html', data=info)
+		if isinstance(info,str) :
+			flash(info, 'danger')
+			return redirect(url_for('view'))
+		label = var.attr()
+		data = {}
+		for i in range(len(label)):
+			data[label[i]] = info[i+1]
+		return render_template('view.html', data=data)
+			
 
 
 @app.route("/analyze")
