@@ -10,6 +10,7 @@ from LoanPrediction import app, db, bcrypt, mail
 import LoanPrediction.view as var
 import _pickle as pickle
 import json
+import test
 pred_model = pickle.load(open('./trainedModel.sav','rb'))
 
 
@@ -89,7 +90,8 @@ def analyze():
 	data = pred_model.feature_importances_
 	data = [round(x*100,2) for x in data]
 	labels = var.labels()
-	return render_template('analyze.html',data = data,labels = json.dumps(labels))
+	table_data = zip(labels,data)
+	return render_template('analyze.html',data = data,labels = json.dumps(labels),table_data = table_data)
 
 @app.route("/generate",methods=['GET', 'POST'])
 @login_required
@@ -116,4 +118,8 @@ def generate():
 		labels.append("")
 		print(data)
 		# return render_template('score.html',data=data)
+		if data[0] >= 0.5:
+			flash("Score cleared the threshold hence loan can be granted","success")
+		else:
+			flash("Score did not clear the threshold hence loan cannot be granted","danger")
 		return render_template('score.html',data = data,labels = json.dumps(labels))
