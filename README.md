@@ -1,7 +1,7 @@
 # Loan Prediction Algorithm For Risky Credit Analysis
 
 
-## Getting Started
+## Introduction
 
 ML addresses knowledge based system. It is used in training the data using particular datasets and using the same trained data to test for risky credit models that are developed to predict the needs of attributes based on the outputs of various Machine Learning Algorithms. In particular, it addresses the importance for accuracy while determining credit risks for customers. The data representations can enable the banks to employ measures to increase their economy and reduce the loan debts for the customers. This knowledge based system would be a technological solution to the banking sector for the chronic problems mentioned above.
 
