@@ -20,7 +20,7 @@ ML addresses knowledge based system. It is used in training the data using parti
 The steps are:
  1. [Setting up Virtual Environment](#step-1---setting-up-virtual-environment)
  2. [Installing App](#step-2---installing-app)
- 3. [Downloading necessary Python Libraries](#step-3---Downloading necessary Python Libraries)
+ 3. [Downloading necessary Python Libraries](#step-3---downloading-necessary-Python-Libraries)
  4. [Setting up SQLite database](#step-4---setting-up-sqlite-database)
 
 
@@ -53,7 +53,7 @@ $ mkdir path_to_project/venv
 $ python3 -m venv path_to_project/venv
 ```
 
-- Push the locally commited files to heroku 
+- To enable virtual environment for the current terminal type the following command.
 
 ```
 $  . path_to_project/venv/bin/activate
