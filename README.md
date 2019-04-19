@@ -53,7 +53,7 @@ $ mkdir path_to_project/venv
 $ python3 -m venv path_to_project/venv
 ```
 
-- Push the locally commited files to heroku 
+- To enable virtual environment for the current terminal type the following command. 
 
 ```
 $  . path_to_project/venv/bin/activate
