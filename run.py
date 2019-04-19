@@ -1,5 +1,8 @@
+#!/usr/local/bin/python3
+
 from LoanPrediction import app
 
 
 if __name__ == '__main__':
-	app.run(debug=False,port=5000)    
+	app.run(port=3000,debug=True)    
+ 
