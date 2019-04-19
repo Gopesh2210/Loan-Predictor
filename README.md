@@ -10,8 +10,8 @@ ML addresses knowledge based system. It is used in training the data using parti
 
 
 - [Python](https://www.python.org/downloads/)
-
 - [Git](https://git-scm.com/downloads)
+- [SQLite](https://www.sqlite.org/download.html)
 
 
 ### Installing
@@ -91,7 +91,6 @@ $ pip3 install -r requirements.txt
 
 ### Step 4 - Setting up SQLite database
 
-- Linux and macOS come preinstalled with SQLite for windows download it from [here](https://www.sqlite.org/download.html)
 
 - Run the convrert csv to sql.py file to convert the csv file to SQLite database which is in the Loan-Predictor folder
 
