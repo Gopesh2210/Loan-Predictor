@@ -88,7 +88,7 @@ $ pip3 install -r requirements.txt
 ```
 
 
-## Setting up SQLite database
+### Step 4 - Setting up SQLite database
 
 - Linux and macOS come preinstalled with SQLite for windows download it from [here](https://www.sqlite.org/download.html)
 
@@ -99,6 +99,14 @@ $ python3 convrert csv to sql.py
 ```
 
 
+### Step 5 - Running the App
+
+Make current working directory as Loan-Predictor then run the app with the following command.
+
+```
+$ cd path_to_project/Loan-Predictor
+$ python3 run.py
+```
 
 ## Versioning
 
