@@ -22,6 +22,7 @@ The steps are:
  2. [Installing App](#step-2---installing-app)
  3. [Downloading necessary Python Libraries](#step-3---downloading-necessary-Python-Libraries)
  4. [Setting up SQLite database](#step-4---setting-up-sqlite-database)
+ 5. [Running the App](#step-4---Running-the-App)
 
 
 ### Step 1 - Setting up Virtual Environment
