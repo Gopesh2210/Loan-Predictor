@@ -53,7 +53,7 @@ $ mkdir path_to_project/venv
 $ python3 -m venv path_to_project/venv
 ```
 
-- To enable virtual environment for the current terminal type the following command. 
+- Push the locally commited files to heroku 
 
 ```
 $  . path_to_project/venv/bin/activate
@@ -90,7 +90,9 @@ $ pip3 install -r requirements.txt
 
 ## Setting up SQLite database
 
-- Run the convrert csv to sql.py file to conver the csv file to SQLite database which is in the Loan-Predictor folder
+- Linux and macOS come preinstalled with SQLite for windows download it from [here](https://www.sqlite.org/download.html)
+
+- Run the convrert csv to sql.py file to convert the csv file to SQLite database which is in the Loan-Predictor folder
 
 ```
 $ python3 convrert csv to sql.py
