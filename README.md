@@ -1,4 +1,4 @@
-# Loan-Predictor
+# Loan Prediction Algorithm For Risky Credit Analysis
 
 
 ## Getting Started
@@ -19,8 +19,9 @@ ML addresses knowledge based system. It is used in training the data using parti
 
 The steps are:
  1. [Setting up Virtual Environment](#step-1---setting-up-virtual-environment)
- 1. [Installing App](#step-2---installing-app)
- 3. [Setting MongoDB Server](#step-3---setting-mongodb-server)
+ 2. [Installing App](#step-2---installing-app)
+ 3. [Downloading necessary Python Libraries](#step-3---Downloading necessary Python Libraries)
+ 4. [Setting up SQLite database](#step-4---setting-up-sqlite-database)
 
 
 ### Step 1 - Setting up Virtual Environment
@@ -87,16 +88,19 @@ $ pip3 install -r requirements.txt
 ```
 
 
-## Setting Up DB
+## Setting up SQLite database
 
-Server is running as soon as git push command is excuted. 
-After completion of above 3 steps use the app installed on your android device. 
+- Run the convrert csv to sql.py file to conver the csv file to SQLite database which is in the Loan-Predictor folder
+
+```
+$ python3 convrert csv to sql.py
+```
 
 
 
 ## Versioning
 
-We use [BitBucket](https://bitbucket.org/) for versioning. Along with [GitKraken](https://www.gitkraken.com) for gui interface
+We use [GitHub](http://github.com/) for versioning. Along with [GitKraken](https://www.gitkraken.com) for gui interface
 
 ## Authors
 
