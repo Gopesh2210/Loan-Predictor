@@ -11,7 +11,7 @@ import LoanPrediction.view as var
 import _pickle as pickle
 import json
 import test
-pred_model = pickle.load(open('./trainedModel.sav','rb'))
+pred_model = pickle.load(open('./LoanPrediction/trainedModel.sav','rb'))
 
 
 
