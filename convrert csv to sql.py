@@ -8,5 +8,3 @@ path_name=os.path.dirname(os.path.abspath(file_name))
 df = pd.read_csv(path_name+'/credit_train_edited_version.csv')
 engine = create_engine('sqlite:///'+path_name+'/LoanPrediction/site.db', echo=False)
 df.to_sql('Loanee', con=engine)
-
-print(os.path.dirname(os.path.abspath('site.db')))

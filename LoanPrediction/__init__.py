@@ -4,13 +4,16 @@ from sqlalchemy import Column, Integer, String
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail, Message
+import os,inspect
 
+file_name = inspect.getfile(inspect.currentframe())
+path_name=os.path.dirname(os.path.abspath(file_name))
 
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'ee556c4ef73062527783828c5651fff6'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+path_name+'/site.db'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
