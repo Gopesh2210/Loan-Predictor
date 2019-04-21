@@ -11,7 +11,13 @@ import LoanPrediction.view as var
 import _pickle as pickle
 import json
 import test
-pred_model = pickle.load(open('./LoanPrediction/trainedModel.sav','rb'))
+import os,inspect
+
+
+file_name = inspect.getfile(inspect.currentframe())
+path_name=os.path.dirname(os.path.abspath(file_name))
+
+pred_model = pickle.load(open(path_name+'/trainedModel.sav','rb'))
 
 
 

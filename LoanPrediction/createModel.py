@@ -5,8 +5,13 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 import pickle
+import os,inspect
 
-df = pd.read_csv('./credit_train_edited_version.csv')
+file_name = inspect.getfile(inspect.currentframe())
+path_name=os.path.dirname(os.path.abspath(file_name))
+
+
+df = pd.read_csv(path_name+'/../credit_train_edited_version.csv')
 
 df_b=df.drop(['Tax Liens','Bankruptcies','Number of Credit Problems','Loan ID','Customer ID','Loan Status','Term','Home Ownership','Purpose','Years in current job'],axis=1)
 

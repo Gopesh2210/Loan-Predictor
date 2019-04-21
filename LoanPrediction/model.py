@@ -15,4 +15,5 @@ class User(db.Model, UserMixin):
 
 	def __repr__(self):
 		return f"User('{self.username}', '{self.bank_name}', '{self.email_addr}')"
-		
+
+db.create_all()

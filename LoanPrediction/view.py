@@ -1,6 +1,10 @@
 from sqlalchemy import create_engine
 import pandas as pd
-df = pd.read_csv('./credit_train_edited_version.csv',nrows=1)
+import os,inspect
+
+file_name = inspect.getfile(inspect.currentframe())
+path_name=os.path.dirname(os.path.abspath(file_name))
+df = pd.read_csv(path_name+'/../credit_train_edited_version.csv',nrows=1)
 def search_cid(id):
         engine = create_engine('sqlite:///LoanPrediction/site.db', echo=False)
         val = sanitize(id)

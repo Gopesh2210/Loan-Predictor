@@ -1,6 +1,10 @@
 import pandas as pd
-df = pd.read_csv('./credit_train_edited_version.csv')
+import os,inspect
 from sqlalchemy import create_engine
+
+file_name = inspect.getfile(inspect.currentframe())
+path_name=os.path.dirname(os.path.abspath(file_name))
+
+df = pd.read_csv(path_name+'/credit_train_edited_version.csv')
 engine = create_engine('sqlite:///LoanPrediction/site.db', echo=False)
 df.to_sql('Loanee', con=engine)
-# print(engine.execute("SELECT * FROM loanee").fetchall())
