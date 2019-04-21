@@ -24,5 +24,5 @@ rc.fit(X_trn,Y_trn)
 pc = rc.predict(X_tst)
 print(classification_report(Y_tst,pc))
 print(confusion_matrix(Y_tst,pc))
-model = "trainedModel.sav"
+model = path_name+"/trainedModel.sav"
 pickle.dump(rc, open(model, 'wb'))
