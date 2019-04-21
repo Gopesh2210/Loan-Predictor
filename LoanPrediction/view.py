@@ -6,7 +6,7 @@ file_name = inspect.getfile(inspect.currentframe())
 path_name=os.path.dirname(os.path.abspath(file_name))
 df = pd.read_csv(path_name+'/../credit_train_edited_version.csv',nrows=1)
 def search_cid(id):
-        engine = create_engine('sqlite:///LoanPrediction/site.db', echo=False)
+        engine = create_engine('sqlite:///'+path_name+'/site.db', echo=False)
         val = sanitize(id)
         if val == False:
                 return "Customer ID should only contain alphabet,numbers and - "

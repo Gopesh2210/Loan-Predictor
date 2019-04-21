@@ -10,6 +10,10 @@ file_name = inspect.getfile(inspect.currentframe())
 path_name=os.path.dirname(os.path.abspath(file_name))
 
 
+if not os.path.exists(path_name+'/trainedModel.sav'):
+    import LoanPrediction.createModel
+
+
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'ee556c4ef73062527783828c5651fff6'
