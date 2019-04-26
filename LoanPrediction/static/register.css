@@ -70,3 +70,7 @@ body {
     width: 50%;
     margin: 5% 25%;
   }
+
+.invalid-feedback span{
+    color: crimson;
+  }
